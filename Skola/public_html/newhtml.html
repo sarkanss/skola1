@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gaidot dzimšanas dienu..</title>
+    </head>
+    <body>
+        <h1>Gaidot dzimšanas dienu...</h1>
+        <hr>
+        <form>
+            <p>Ievadi pilnu datumu, kad Tev būs tuvākā dzimšanas diena.</p>
+            <p>Gads</p>
+            <input type="text" id="gads" name="gads">
+            <p>Mēnesis</p>
+            <input type="text" id="menesis" name="menesis">
+            <p>Diena</p>
+            <input type="text" id="datums" name="datums">
+            <input type="button" name="poga" value="Aprēķināt dienu skaitu līdz dzimšanas dienai" onclick="laiks();">
+            
+            <p>Līdz svētkiem atlikušas</p>
+            <input type="text" id="dienas" name="dienas">
+            <p>dienas : )) </p>
+            <input type="text" id="dienas1" name="dienas1" >
+             <input type="text" id="dienas2" name="dienas2" >
+             <input type="text" id="dienas4" name="dienas4" ><!-- comment -->
+             <input type="text" id="menesisnow" name="menesisnow" ><!-- comment -->
+        </form>
+        
+       
+        <script>
+            function laiks(){
+                var day = 1000 * 60 * 60 * 24; // cik milisekundes ir vienā dienā
+                var now = new Date(); // iegūst tagadējo datumu JS Datu tipā
+                var date = new Date(document.getElementById("gads").value, (document.getElementById("menesis").value-1), document.getElementById("datums").value);
+                // Atradam starpību starp 2 laika momentiem un apaļo līdz dienam (jo rezultāts ir milisekundēs)
+                var res = (Math.round((date.getTime()-now.getTime()) / (day)) + 1).toFixed(0);
+                document.getElementById("dienas").value = res;
+                document.getElementById("dienas1").value = Math.round((date.getTime() / (day))).toFixed(0);
+                document.getElementById("dienas2").value = Math.round((now.getTime() / (day))).toFixed(0);
+             document.getElementById("dienas4").value = now.getDate();
+             document.getElementById("menesisnow").value = now.getMonth();
+             
+            }
+        </script>
+    </body>
+</html>
